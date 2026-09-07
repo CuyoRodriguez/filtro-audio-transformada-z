@@ -122,42 +122,6 @@ st.markdown(
 	unsafe_allow_html=True,
 )
 
-st.markdown(
-	"""
-	<style>
-	/* Mantiene el botón de la sidebar oscuro y legible en todo momento */
-	div[data-testid="stSidebar"] .stButton > button,
-	div[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"],
-	div[data-testid="stSidebar"] button[kind="secondary"],
-	div[data-testid="stSidebar"] .stButton > button p,
-	div[data-testid="stSidebar"] .stButton > button span,
-	div[data-testid="stSidebar"] .stButton > button div,
-	div[data-testid="stSidebar"] button [data-testid="stMarkdownContainer"] *,
-	div[data-testid="stSidebar"] .stButton > button:hover,
-	div[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"]:hover,
-	div[data-testid="stSidebar"] button[kind="secondary"]:hover,
-	div[data-testid="stSidebar"] .stButton > button:hover p,
-	div[data-testid="stSidebar"] .stButton > button:hover span,
-	div[data-testid="stSidebar"] .stButton > button:hover div {
-		color: #FFFFFF !important;
-		-webkit-text-fill-color: #FFFFFF !important;
-		font-weight: bold !important;
-		background: #0F172A !important;
-		background-color: #0F172A !important;
-		border-color: #0F172A !important;
-	}
-	div[data-testid="stSidebar"] .stButton > button:hover {
-		color: #FFFFFF !important;
-		-webkit-text-fill-color: #FFFFFF !important;
-		background: #2563EB !important;
-		background-color: #2563EB !important;
-		border-color: #2563EB !important;
-	}
-	</style>
-	""",
-	unsafe_allow_html=True,
-)
-
 with st.sidebar:
 	st.markdown("## Filtro IIR")
 	st.caption("Referencia matemática")
@@ -174,7 +138,7 @@ with st.sidebar:
 	st.write("El sistema actúa como un filtro IIR paso bajas y suavizador: atenúa las frecuencias agudas mientras conserva las componentes graves.")
 
 	st.markdown("---")
-	if st.sidebar.button("Resultado esperado 🐱"):
+	if st.sidebar.button("Resultado esperado 🐱", type="primary"):
 		with open("gatito.gif", "rb") as archivo_gif:
 			st.sidebar.image(archivo_gif.read(), use_container_width=True)
 
