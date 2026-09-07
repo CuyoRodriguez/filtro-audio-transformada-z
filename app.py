@@ -127,20 +127,29 @@ st.markdown(
 	<style>
 	/* Mantiene el botón de la sidebar oscuro y legible en todo momento */
 	div[data-testid="stSidebar"] .stButton > button,
+	div[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"],
+	div[data-testid="stSidebar"] button[kind="secondary"],
 	div[data-testid="stSidebar"] .stButton > button p,
 	div[data-testid="stSidebar"] .stButton > button span,
 	div[data-testid="stSidebar"] .stButton > button div,
+	div[data-testid="stSidebar"] button [data-testid="stMarkdownContainer"] *,
 	div[data-testid="stSidebar"] .stButton > button:hover,
+	div[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"]:hover,
+	div[data-testid="stSidebar"] button[kind="secondary"]:hover,
 	div[data-testid="stSidebar"] .stButton > button:hover p,
 	div[data-testid="stSidebar"] .stButton > button:hover span,
 	div[data-testid="stSidebar"] .stButton > button:hover div {
 		color: #FFFFFF !important;
 		-webkit-text-fill-color: #FFFFFF !important;
 		font-weight: bold !important;
+		background: #0F172A !important;
 		background-color: #0F172A !important;
 		border-color: #0F172A !important;
 	}
 	div[data-testid="stSidebar"] .stButton > button:hover {
+		color: #FFFFFF !important;
+		-webkit-text-fill-color: #FFFFFF !important;
+		background: #2563EB !important;
 		background-color: #2563EB !important;
 		border-color: #2563EB !important;
 	}
