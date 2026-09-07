@@ -137,6 +137,10 @@ with st.sidebar:
 	st.markdown('<div class="sidebar-heading">Efecto sobre el audio</div>', unsafe_allow_html=True)
 	st.write("El sistema actúa como un filtro IIR paso bajas y suavizador: atenúa las frecuencias agudas mientras conserva las componentes graves.")
 
+	st.markdown("---")
+	if st.sidebar.button("Resultado esperado 🐱"):
+		st.sidebar.image("gatito.gif", width=180)
+
 with st.container():
 	st.markdown('<div class="eyebrow">Procesamiento digital de señales</div>', unsafe_allow_html=True)
 	st.markdown('<h1 class="hero-title">Filtro de Audio con Transformada Z</h1>', unsafe_allow_html=True)
@@ -220,8 +224,3 @@ if archivo_wav is not None:
 		with st.spinner("Generando gráficas comparativas... Por favor espera."):
 			fig = graficar_comparacion(audio_data, audio_procesado, sample_rate)
 			st.pyplot(fig)
-
-st.write("")
-pie_columna = st.columns([1, 1, 1])[1]
-with pie_columna:
-	st.image("gatito.gif", width=150)
