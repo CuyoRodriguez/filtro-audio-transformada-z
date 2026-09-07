@@ -125,30 +125,13 @@ st.markdown(
 st.markdown(
 	"""
 	<style>
-	.stSidebar button {
-		color: #1A1D20 !important;
+	/* Fuerza color oscuro en el botón de la sidebar y sus elementos internos */
+	div[data-testid="stSidebar"] button,
+	div[data-testid="stSidebar"] button *,
+	div[data-testid="stSidebar"] button p {
+		color: #000000 !important;
+		-webkit-text-fill-color: #000000 !important;
 		font-weight: bold !important;
-	}
-	</style>
-	""",
-	unsafe_allow_html=True,
-)
-
-st.markdown(
-	"""
-	<style>
-	/* Botón en estado normal */
-	div[data-testid="stSidebar"] button {
-		color: #0F172A !important;
-		background-color: #FFFFFF !important;
-		border: 1px solid #CBD5E1 !important;
-		font-weight: 600 !important;
-	}
-	/* Botón al pasar el cursor (hover) */
-	div[data-testid="stSidebar"] button:hover {
-		color: #FFFFFF !important;
-		background-color: #2563EB !important;
-		border-color: #2563EB !important;
 	}
 	</style>
 	""",
