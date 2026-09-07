@@ -122,6 +122,9 @@ st.markdown(
 	unsafe_allow_html=True,
 )
 
+if "mostrar_gif" not in st.session_state:
+	st.session_state.mostrar_gif = False
+
 with st.sidebar:
 	st.markdown("## Filtro IIR")
 	st.caption("Referencia matemática")
@@ -138,7 +141,10 @@ with st.sidebar:
 	st.write("El sistema actúa como un filtro IIR paso bajas y suavizador: atenúa las frecuencias agudas mientras conserva las componentes graves.")
 
 	st.markdown("---")
-	if st.sidebar.button("Resultado esperado 🐱", type="primary"):
+	if st.sidebar.button("Resultado esperado", type="primary"):
+		st.session_state.mostrar_gif = not st.session_state.mostrar_gif
+
+	if st.session_state.mostrar_gif:
 		with open("gatito.gif", "rb") as archivo_gif:
 			st.sidebar.image(archivo_gif.read(), use_container_width=True)
 
