@@ -7,11 +7,15 @@ from scipy.io import wavfile
 from scipy.signal import lfilter
 
 
-def aplicar_filtro_z(audio_data, sample_rate):
+def aplicar_filtro_z(audio_data, sample_rate, pasadas=3):
 	b = np.array([1.0, 0.4])
 	a = np.array([1.0, -0.2, 0.01])
+	audio_filtrado = np.asarray(audio_data)
 
-	return lfilter(b, a, np.asarray(audio_data), axis=0)
+	for _ in range(pasadas):
+		audio_filtrado = lfilter(b, a, audio_filtrado, axis=0)
+
+	return audio_filtrado
 
 
 def graficar_comparacion(audio_orig, audio_filt, sample_rate):
@@ -151,9 +155,11 @@ with st.container():
 		st.markdown('</div>', unsafe_allow_html=True)
 	with estado_col:
 		st.markdown(
-			'<div class="card"><div class="card-label">Configuración</div><div class="card-title">Filtro establecido</div><div class="meta">IIR de segundo orden<br>Preserva la frecuencia de muestreo original</div></div>',
+			'<div class="card"><div class="card-label">Configuración</div><div class="card-title">Filtro establecido</div><div class="meta">IIR de segundo orden<br>Preserva la frecuencia de muestreo original</div>',
 			unsafe_allow_html=True,
 		)
+		pasadas = st.slider("Intensidad del filtro (Pasadas)", min_value=1, max_value=5, value=3)
+		st.markdown('</div>', unsafe_allow_html=True)
 
 if archivo_wav is not None:
 	sample_rate, audio_data = wavfile.read(archivo_wav)
@@ -183,7 +189,7 @@ if archivo_wav is not None:
 			)
 			if st.button("Aplicar Filtro IIR", type="primary", use_container_width=True):
 				with st.spinner("Procesando señal de audio con la Transformada Z... Por favor espera"):
-					audio_procesado = aplicar_filtro_z(audio_data, sample_rate)
+					audio_procesado = aplicar_filtro_z(audio_data, sample_rate, pasadas)
 				audio_procesado = np.asarray(audio_procesado, dtype=np.float64)
 				audio_procesado = np.nan_to_num(audio_procesado, nan=0.0, posinf=1.0, neginf=-1.0)
 
