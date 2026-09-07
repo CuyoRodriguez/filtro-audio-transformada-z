@@ -1,5 +1,6 @@
 import io
 
+import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 from scipy.io import wavfile
@@ -11,6 +12,30 @@ def aplicar_filtro_z(audio_data, sample_rate):
 	a = np.array([1.0, -0.2, 0.01])
 
 	return lfilter(b, a, np.asarray(audio_data), axis=0)
+
+
+def graficar_comparacion(audio_orig, audio_filt, sample_rate):
+	audio_orig = np.asarray(audio_orig)
+	audio_filt = np.asarray(audio_filt)
+	if audio_orig.ndim == 2:
+		audio_orig = audio_orig[:, 0]
+	if audio_filt.ndim == 2:
+		audio_filt = audio_filt[:, 0]
+
+	longitud = min(len(audio_orig), len(audio_filt))
+	tiempo = np.arange(longitud) / sample_rate
+	fig, axes = plt.subplots(2, 1, figsize=(12, 6), sharex=True)
+	axes[0].plot(tiempo, audio_orig[:longitud], color="#147d92", linewidth=0.8)
+	axes[0].set_title("Audio Original")
+	axes[0].set_ylabel("Amplitud")
+	axes[0].grid(alpha=0.25)
+	axes[1].plot(tiempo, audio_filt[:longitud], color="#d97706", linewidth=0.8)
+	axes[1].set_title("Audio Filtrado")
+	axes[1].set_xlabel("Tiempo (s)")
+	axes[1].set_ylabel("Amplitud")
+	axes[1].grid(alpha=0.25)
+	fig.tight_layout()
+	return fig
 
 
 st.set_page_config(
@@ -130,6 +155,7 @@ if archivo_wav is not None:
 	sample_rate, audio_data = wavfile.read(archivo_wav)
 	canales = 2 if audio_data.ndim == 2 else 1
 	tipo_canales = "Estéreo" if canales == 2 else "Mono"
+	audio_procesado = None
 
 	audio_original = io.BytesIO()
 	wavfile.write(audio_original, sample_rate, audio_data)
@@ -177,3 +203,9 @@ if archivo_wav is not None:
 			else:
 				st.info("Pulsa el botón para generar la versión filtrada.")
 			st.markdown('</div>', unsafe_allow_html=True)
+
+	if audio_procesado is not None:
+		st.write("")
+		st.markdown('<div class="card-label">Comparación temporal</div>', unsafe_allow_html=True)
+		fig = graficar_comparacion(audio_data, audio_procesado, sample_rate)
+		st.pyplot(fig)
