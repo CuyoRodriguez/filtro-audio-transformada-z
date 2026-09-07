@@ -224,4 +224,4 @@ if archivo_wav is not None:
 st.write("")
 pie_columna = st.columns([1, 1, 1])[1]
 with pie_columna:
-	st.image("https://media.tenor.com/80896736380a6349a49ee228a74dc632/cat-dance.gif", width=150)
+	st.image("gatito.gif", width=150)
