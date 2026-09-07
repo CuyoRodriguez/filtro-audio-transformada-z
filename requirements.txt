@@ -1,0 +1,7 @@
+pdfminer.six
+PyMuPDF
+pymupdf4llm
+markdown
+streamlit
+numpy
+scipy
