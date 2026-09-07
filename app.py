@@ -125,13 +125,19 @@ st.markdown(
 st.markdown(
 	"""
 	<style>
-	/* Fuerza color oscuro en el botón de la sidebar y sus elementos internos */
-	div[data-testid="stSidebar"] button,
-	div[data-testid="stSidebar"] button *,
-	div[data-testid="stSidebar"] button p {
+	/* Fuerza texto negro en el botón de la sidebar y sus elementos internos */
+	div[data-testid="stSidebar"] .stButton > button,
+	div[data-testid="stSidebar"] .stButton > button p,
+	div[data-testid="stSidebar"] .stButton > button span,
+	div[data-testid="stSidebar"] .stButton > button div,
+	div[data-testid="stSidebar"] .stButton > button:hover,
+	div[data-testid="stSidebar"] .stButton > button:hover p,
+	div[data-testid="stSidebar"] .stButton > button:hover span,
+	div[data-testid="stSidebar"] .stButton > button:hover div {
 		color: #000000 !important;
 		-webkit-text-fill-color: #000000 !important;
 		font-weight: bold !important;
+		background-color: #FFFFFF !important;
 	}
 	</style>
 	""",
