@@ -122,6 +122,18 @@ st.markdown(
 	unsafe_allow_html=True,
 )
 
+st.markdown(
+	"""
+	<style>
+	.stSidebar button {
+		color: #1A1D20 !important;
+		font-weight: bold !important;
+	}
+	</style>
+	""",
+	unsafe_allow_html=True,
+)
+
 with st.sidebar:
 	st.markdown("## Filtro IIR")
 	st.caption("Referencia matemática")
@@ -139,7 +151,8 @@ with st.sidebar:
 
 	st.markdown("---")
 	if st.sidebar.button("Resultado esperado 🐱"):
-		st.sidebar.image("gatito.gif", width=180)
+		with open("gatito.gif", "rb") as archivo_gif:
+			st.sidebar.image(archivo_gif.read(), use_container_width=True)
 
 with st.container():
 	st.markdown('<div class="eyebrow">Procesamiento digital de señales</div>', unsafe_allow_html=True)
