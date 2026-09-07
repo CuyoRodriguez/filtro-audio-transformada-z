@@ -125,7 +125,7 @@ st.markdown(
 st.markdown(
 	"""
 	<style>
-	/* Fuerza texto negro en el botón de la sidebar y sus elementos internos */
+	/* Mantiene el botón de la sidebar oscuro y legible en todo momento */
 	div[data-testid="stSidebar"] .stButton > button,
 	div[data-testid="stSidebar"] .stButton > button p,
 	div[data-testid="stSidebar"] .stButton > button span,
@@ -134,10 +134,15 @@ st.markdown(
 	div[data-testid="stSidebar"] .stButton > button:hover p,
 	div[data-testid="stSidebar"] .stButton > button:hover span,
 	div[data-testid="stSidebar"] .stButton > button:hover div {
-		color: #000000 !important;
-		-webkit-text-fill-color: #000000 !important;
+		color: #FFFFFF !important;
+		-webkit-text-fill-color: #FFFFFF !important;
 		font-weight: bold !important;
-		background-color: #FFFFFF !important;
+		background-color: #0F172A !important;
+		border-color: #0F172A !important;
+	}
+	div[data-testid="stSidebar"] .stButton > button:hover {
+		background-color: #2563EB !important;
+		border-color: #2563EB !important;
 	}
 	</style>
 	""",
