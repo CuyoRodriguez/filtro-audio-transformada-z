@@ -217,5 +217,11 @@ if archivo_wav is not None:
 	if audio_procesado is not None:
 		st.write("")
 		st.markdown('<div class="card-label">Comparación temporal</div>', unsafe_allow_html=True)
-		fig = graficar_comparacion(audio_data, audio_procesado, sample_rate)
-		st.pyplot(fig)
+		with st.spinner("Generando gráficas comparativas... Por favor espera."):
+			fig = graficar_comparacion(audio_data, audio_procesado, sample_rate)
+			st.pyplot(fig)
+
+st.write("")
+pie_columna = st.columns([1, 1, 1])[1]
+with pie_columna:
+	st.image("https://media.tenor.com/80896736380a6349a49ee228a74dc632/cat-dance.gif", width=150)
