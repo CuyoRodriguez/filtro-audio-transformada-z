@@ -21,6 +21,8 @@ def graficar_comparacion(audio_orig, audio_filt, sample_rate):
 		audio_orig = audio_orig[:, 0]
 	if audio_filt.ndim == 2:
 		audio_filt = audio_filt[:, 0]
+	if audio_orig.dtype == np.int16:
+		audio_orig = audio_orig.astype(np.float64) / 32768.0
 
 	longitud = min(len(audio_orig), len(audio_filt))
 	tiempo = np.arange(longitud) / sample_rate
@@ -28,11 +30,13 @@ def graficar_comparacion(audio_orig, audio_filt, sample_rate):
 	axes[0].plot(tiempo, audio_orig[:longitud], color="#147d92", linewidth=0.8)
 	axes[0].set_title("Audio Original")
 	axes[0].set_ylabel("Amplitud")
+	axes[0].set_ylim(-1.0, 1.0)
 	axes[0].grid(alpha=0.25)
 	axes[1].plot(tiempo, audio_filt[:longitud], color="#d97706", linewidth=0.8)
 	axes[1].set_title("Audio Filtrado")
 	axes[1].set_xlabel("Tiempo (s)")
 	axes[1].set_ylabel("Amplitud")
+	axes[1].set_ylim(-1.0, 1.0)
 	axes[1].grid(alpha=0.25)
 	fig.tight_layout()
 	return fig
